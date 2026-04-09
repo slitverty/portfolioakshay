@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import Hero from './components/Hero';
-import About from './components/About';
-import Works from './components/Works';
-import Covers from './components/Covers';
-import Contact from './components/Contact';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Portfolio from './pages/Portfolio';
 import AdminControls from './admin/AdminControls';
-// ... other imports
 import initialPortfolioData from './data/portfolio.json';
-import { useEffect } from 'react';
 
 const STORAGE_KEY = 'portfolio_admin_data';
 
@@ -28,7 +23,7 @@ function getInitialData() {
 
 function App() {
   const [data, setData] = useState(getInitialData);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Fetch from global Vercel KV on mount
   useEffect(() => {
@@ -62,10 +57,7 @@ function App() {
       console.warn('localStorage save failed:', e);
     }
 
-    // 3. Close admin panel
-    setIsAdminOpen(false);
-
-    // 4. Send to Vercel KV via serverless function (works on prod and via 'vercel dev')
+    // 3. Send to Vercel KV via serverless function
     try {
       const res = await fetch('/api/save-portfolio', {
         method: 'POST',
@@ -75,51 +67,30 @@ function App() {
       if (!res.ok) {
         throw new Error('Server responded with ' + res.status);
       }
-      console.log('✅ Global portfolio data updated on Vercel KV');
+      console.log('✅ Global portfolio data updated on Vercel Redis');
     } catch (err) {
-      console.error('Failed to write to KV api:', err);
+      console.error('Failed to write to Redis api:', err);
     }
+    
+    // 4. Navigate back to the main site when done saving
+    navigate('/');
   };
 
   return (
     <div className="app-container">
-      {/* Admin Button Top Right */}
-      <button
-        style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          zIndex: 50,
-          background: 'rgba(255,255,255,0.1)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          color: '#fff',
-          padding: '8px 16px',
-          borderRadius: '20px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          fontSize: '0.85rem',
-          letterSpacing: '1px',
-          textTransform: 'uppercase'
-        }}
-        onClick={() => setIsAdminOpen(true)}
-      >
-        AC
-      </button>
-
-      {isAdminOpen && (
-        <AdminControls
-          data={data}
-          onSave={handleSaveData}
-          onClose={() => setIsAdminOpen(false)}
+      <Routes>
+        <Route path="/" element={<Portfolio data={data} />} />
+        <Route 
+          path="/admin" 
+          element={
+            <AdminControls
+              data={data}
+              onSave={handleSaveData}
+              onClose={() => navigate('/')}
+            />
+          } 
         />
-      )}
-
-      <Hero data={data.hero} />
-      <About data={data.about} />
-      <Works data={data.works} />
-      <Covers data={data.covers} />
-      <Contact data={data.contact} />
+      </Routes>
     </div>
   );
 }
