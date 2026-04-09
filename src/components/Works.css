@@ -1,22 +1,75 @@
+/* 🎬 SECTION SETUP */
 .works-section {
   background-color: var(--bg-primary);
   position: relative;
+  padding: var(--spacing-section) 0;
+}
+
+.works-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .work-item {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 4rem 5%;
 }
 
+/* Subtle separator between projects */
+.work-item + .work-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* 🌌 Background ambient glow */
+.work-item::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--color-primary), transparent 70%);
+  filter: blur(120px);
+  opacity: 0.06;
+  z-index: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* 🔄 Placeholder and Loading Spinner */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 📦 CONTENT */
 .work-content {
   width: 90%;
   max-width: 1400px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
@@ -27,73 +80,110 @@
 @media (min-width: 1024px) {
   .work-content {
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 6rem;
+    gap: 5rem;
   }
 }
 
+/* 🎬 VIDEO */
 .video-container {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--bg-secondary);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.4s ease;
+}
+
+.video-container:hover {
+  box-shadow: 0 20px 80px rgba(139, 92, 246, 0.15);
 }
 
 .video-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   border-radius: 16px;
   overflow: hidden;
   z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.video-wrapper iframe {
+/* 🔥 Cinematic zoom */
+.video-wrapper.active-video {
+  transform: scale(1.02);
+}
+
+/* 🎥 iframe fade */
+.video-frame {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none; /* aesthetic only on scroll */
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
-.video-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #111;
+.video-frame.visible {
+  opacity: 1;
 }
 
-.video-glow {
+/* 🎵 WAVEFORM */
+.waveform {
   position: absolute;
-  top: 50%;
+  bottom: 10px;
   left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  background: var(--color-primary);
-  filter: blur(100px);
-  opacity: 0.15;
-  z-index: 1;
-  transition: opacity 0.5s ease;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  z-index: 3;
 }
 
-.work-item:hover .video-glow {
-  opacity: 0.3;
+.waveform span {
+  width: 3px;
+  height: 10px;
+  background: linear-gradient(180deg, #ff2d95, #7a00ff);
+  border-radius: 2px;
+  animation: wave 1s infinite ease-in-out;
+  opacity: 0.8;
 }
 
+.waveform span:nth-child(odd) {
+  animation-duration: 0.8s;
+}
+
+.waveform span:nth-child(even) {
+  animation-duration: 1.2s;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    height: 8px;
+    opacity: 0.5;
+  }
+
+  50% {
+    height: 28px;
+    opacity: 1;
+  }
+}
+
+/* 📄 DETAILS */
 .work-details {
   display: flex;
   flex-direction: column;
 }
 
+/* ✨ TITLE */
 .work-title {
   font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 0.5rem;
   color: var(--text-primary);
-  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
+/* 🎧 ROLE */
 .work-role {
   font-family: var(--font-heading);
   color: var(--color-accent);
@@ -104,13 +194,28 @@
   margin-bottom: 1.5rem;
 }
 
+/* 📝 DESCRIPTION */
 .work-desc {
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
+/* 🎧 SPOTIFY PLAYER */
+.spotify-player {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(30, 215, 96, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.spotify-player:hover {
+  transform: scale(1.02);
+}
+
+/* 🔗 LINKS */
 .work-links {
   display: flex;
   flex-wrap: wrap;
@@ -127,9 +232,10 @@
   letter-spacing: 1px;
   padding: 0.75rem 1.5rem;
   border-radius: 30px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .icon-link svg {
@@ -138,10 +244,25 @@
 }
 
 .icon-link:hover {
-  transform: translateY(-3px);
-  background: rgba(255,255,255,0.1);
+  transform: translateY(-4px) scale(1.03);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.yt-link:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255,0,0,0.3); }
-.sp-link:hover { border-color: #1ed760; color: #1ed760; box-shadow: 0 0 15px rgba(30,215,96,0.3); }
-.ig-link:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225,48,108,0.3); }
+/* 🎨 Platform-specific glow */
+.yt-link:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.sp-link:hover {
+  border-color: #1ed760;
+  color: #1ed760;
+  box-shadow: 0 0 20px rgba(30, 215, 96, 0.4);
+}
+
+.ig-link:hover {
+  border-color: #e1306c;
+  color: #e1306c;
+  box-shadow: 0 0 20px rgba(225, 48, 108, 0.4);
+}

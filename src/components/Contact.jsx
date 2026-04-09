@@ -4,7 +4,7 @@ import { Mail, Headphones } from 'lucide-react';
 import { FaYoutube, FaInstagram } from 'react-icons/fa';
 import './Contact.css';
 
-const Contact = () => {
+const Contact = ({ data }) => {
   return (
     <section id="contact" className="section contact-section">
       <div className="container contact-container">
@@ -17,15 +17,14 @@ const Contact = () => {
         >
           <h2 className="section-title">Let's Create</h2>
           <p className="contact-text">
-            Interested in collaborating on a track, need mixing/mastering services, or just want to connect? 
-            Reach out through the form or social channels.
+            {data?.text}
           </p>
           
           <div className="social-links-lg">
-            <a href="#" className="social-icon"><FaYoutube /></a>
-            <a href="#" className="social-icon"><Headphones /></a>
-            <a href="#" className="social-icon"><FaInstagram /></a>
-            <a href="mailto:hello@akshoysarkar.com" className="social-icon"><Mail /></a>
+            {data?.socials?.youtube && <a href={data.socials.youtube} className="social-icon"><FaYoutube /></a>}
+            {data?.socials?.spotify && <a href={data.socials.spotify} className="social-icon"><Headphones /></a>}
+            {data?.socials?.instagram && <a href={data.socials.instagram} className="social-icon"><FaInstagram /></a>}
+            {data?.email && <a href={`mailto:${data.email}`} className="social-icon"><Mail /></a>}
           </div>
         </motion.div>
 

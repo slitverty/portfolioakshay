@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "title": "Akshoy Sarkar ",
+    "subtitle": "Singer | Sound Engineer"
+  },
+  "about": {
+    "text": "Bridging the gap between raw emotion and technical perfection. As a vocalist and sound engineer, We craft auditory experiences that resonate. Every track is a canvas, and sound is my medium.",
+    "features": [
+      {
+        "title": "Vocalist",
+        "description": "Soulful renditions, dynamic range, and emotional storytelling through voice."
+      },
+      {
+        "title": "Sound Engineer",
+        "description": "Precision mixing, spatial mastering, and pristine audio production."
+      }
+    ]
+  },
+  "works": [
+    {
+      "id": 1,
+      "title": "Vocal Performance 1",
+      "role": "Vocals",
+      "description": "An emotional and dynamic vocal performance, showcasing range and control.",
+      "videoUrl": "https://www.youtube.com/embed/BejBpmafsXE",
+      "spotifyUrl": "",
+      "instaUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=BejBpmafsXE"
+    },
+    {
+      "id": 2,
+      "title": "Acoustic Session",
+      "role": "Vocals & Sound Engineering",
+      "description": "A stripped-down acoustic session, carefully mixed to retain the natural warmth of the room.",
+      "videoUrl": "https://www.youtube.com/embed/N8v7CiJEMLA",
+      "spotifyUrl": "",
+      "instaUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=N8v7CiJEMLA"
+    },
+    {
+      "id": 3,
+      "title": "Studio Mix 1",
+      "role": "Sound Engineering",
+      "description": "A complex studio mix where punchy drums and clear vocals sit perfectly together.",
+      "videoUrl": "https://www.youtube.com/embed/EGiuvAgGKac",
+      "spotifyUrl": "",
+      "instaUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=EGiuvAgGKac"
+    },
+    {
+      "id": 4,
+      "title": "Vocal Performance 2",
+      "role": "Vocals",
+      "description": "Live raw vocal performance emphasizing clarity and emotional nuance.",
+      "videoUrl": "https://www.youtube.com/embed/-Ak45SmoeJM",
+      "spotifyUrl": "",
+      "instaUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=-Ak45SmoeJM"
+    },
+    {
+      "id": 5,
+      "title": "Studio Mix 2",
+      "role": "Mixing & Mastering",
+      "description": "Mastered for streaming platforms with optimal loudness and stereo width.",
+      "videoUrl": "https://www.youtube.com/embed/m0BSdUmepS4",
+      "spotifyUrl": "",
+      "instaUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=m0BSdUmepS4"
+    },
+    {
+      "id": 1775737650579,
+      "title": "New Work",
+      "role": "",
+      "description": "",
+      "videoUrl": "https://www.youtube.com/embed/zikiPpHb0Xg",
+      "youtubeUrl": "https://www.youtube.com/watch?v=zikiPpHb0Xg"
+    },
+    {
+      "id": 1775737677154,
+      "title": "New Work",
+      "role": "",
+      "description": "",
+      "videoUrl": "https://www.youtube.com/embed/UnGY1UIdWMM",
+      "youtubeUrl": "https://www.youtube.com/watch?v=UnGY1UIdWMM"
+    },
+    {
+      "id": 1775737703097,
+      "title": "New Work",
+      "role": "",
+      "description": "",
+      "videoUrl": "https://www.youtube.com/embed/AcUKkh11szI",
+      "youtubeUrl": "https://www.youtube.com/watch?v=AcUKkh11szI"
+    }
+  ],
+  "covers": [
+    {
+      "id": 1,
+      "title": "Cover 1",
+      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+1"
+    },
+    {
+      "id": 2,
+      "title": "Cover 2",
+      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+2"
+    },
+    {
+      "id": 3,
+      "title": "Cover 3",
+      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+3"
+    },
+    {
+      "id": 4,
+      "title": "Cover 4",
+      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+4"
+    }
+  ],
+  "contact": {
+    "text": "Interested in collaborating on a track, need mixing/mastering services, or just want to connect? Reach out through the form or social channels.",
+    "email": "hello@akshoysarkar.com",
+    "socials": {
+      "youtube": "#",
+      "spotify": "#",
+      "instagram": "#"
+    }
+  }
+}
