@@ -4,8 +4,17 @@ import { ChevronDown } from 'lucide-react';
 import './Hero.css';
 
 const Hero = ({ data }) => {
-  const subtitleParts = data?.subtitle ? data.subtitle.split('|') : ["Singer ", " Sound Engineer"];
-  
+  const renderTitle = (title) => {
+    const textToRender = title || "Akshoy Sarkar (Akash)";
+    const parts = textToRender.split(/(\(.*\))/);
+    return parts.map((part, index) => {
+      if (part.startsWith('(') && part.endsWith(')')) {
+        return <span key={index} className="hero-title-alias">{part}</span>;
+      }
+      return part.trim();
+    });
+  };
+
   return (
     <section className="section hero-section">
       <div className="hero-background">
@@ -20,9 +29,9 @@ const Hero = ({ data }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h1 className="hero-title glow-text">{data?.title || "Akshoy Sarkar"}</h1>
+          <h1 className="hero-title glow-text">{renderTitle(data?.title)}</h1>
           <p className="hero-subtitle">
-            {subtitleParts[0]} <span className="divider">|</span> {subtitleParts[1]}
+            {data?.subtitle || "Music Producer"}
           </p>
         </motion.div>
         

@@ -64,6 +64,14 @@
   letter-spacing: -2px;
 }
 
+.hero-title-alias {
+  font-size: 0.5em; /* Smaller font than the main name */
+  font-weight: 400;
+  margin-left: 0.5rem;
+  opacity: 0.8;
+  vertical-align: middle;
+}
+
 .hero-subtitle {
   font-size: clamp(1.2rem, 3vw, 2rem);
   color: var(--text-secondary);

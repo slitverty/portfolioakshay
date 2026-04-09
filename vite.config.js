@@ -11,7 +11,23 @@ function localCmsApi() {
     name: 'local-cms-api',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        if (req.url === '/api/save-portfolio' && req.method === 'POST') {
+        if (req.url === '/api/get-portfolio' && req.method === 'GET') {
+          try {
+            const filePath = path.resolve(__dirname, 'src/data/portfolio.json');
+            if (fs.existsSync(filePath)) {
+              const data = fs.readFileSync(filePath, 'utf8');
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(data);
+            } else {
+              res.statusCode = 200;
+              res.end(JSON.stringify(null));
+            }
+          } catch (error) {
+            res.statusCode = 500;
+            res.end(JSON.stringify({ error: error.message }));
+          }
+        } else if (req.url === '/api/save-portfolio' && req.method === 'POST') {
           let body = '';
           req.on('data', chunk => {
             body += chunk.toString();
