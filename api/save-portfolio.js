@@ -1,4 +1,13 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+// Support both the older Vercel KV environment variables and the new Marketplace Upstash Redis variables
+const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
+const redis = new Redis({
+  url: url || "",
+  token: token || "",
+});
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -8,17 +17,16 @@ export default async function handler(req, res) {
   try {
     const data = req.body;
     
-    // We should ensure the KV url and token exist
-    if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-      console.warn("KV_REST_API variables missing, skipping KV save.");
+    if (!url || !token) {
+      console.warn("Redis REST API variables missing, skipping KV save.");
       return res.status(500).json({ error: 'Database not configured on Vercel' });
     }
 
     // Save to KV under the key "portfolio_data"
-    await kv.set('portfolio_data', data);
+    await redis.set('portfolio_data', data);
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Error saving to KV:', error);
+    console.error('Error saving to Redis:', error);
     return res.status(500).json({ error: error.message });
   }
 }
