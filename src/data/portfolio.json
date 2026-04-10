@@ -96,22 +96,27 @@
     {
       "id": 1,
       "title": "Cover 1",
-      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+1"
+      "videoUrl": "https://www.instagram.com/reel/DOlgCKgD02p/"
     },
     {
       "id": 2,
       "title": "Cover 2",
-      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+2"
+      "videoUrl": "https://www.instagram.com/reel/DLNGaqaJ8Ex/"
     },
     {
       "id": 3,
       "title": "Cover 3",
-      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+3"
+      "videoUrl": "https://www.instagram.com/reel/DWyA9SCETlN/"
     },
     {
       "id": 4,
       "title": "Cover 4",
-      "img": "https://via.placeholder.com/400x400/111/fff?text=Cover+4"
+      "videoUrl": "https://www.instagram.com/reel/DQYkvQ2j_Lh/"
+    },
+    {
+      "id": 1775804854149,
+      "title": "Cover 5",
+      "videoUrl": "https://www.instagram.com/reel/DPs0mpukWxY/"
     }
   ],
   "contact": {

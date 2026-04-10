@@ -15,73 +15,68 @@
 
 .covers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   padding: 2rem 0;
 }
 
+@media (max-width: 1024px) {
+  .covers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .covers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cover-item {
-  cursor: pointer;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  transition: box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
 }
 
 .cover-item:hover {
+  transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(192, 132, 252, 0.2);
 }
 
-.cover-image {
+.cover-video-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
-  background: var(--bg-primary);
+  background: #000;
+  /* Instagram embeds have a specific height, but we use a padding trick or aspect ratio to keep it contained nicely */
+  aspect-ratio: 9/16; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.placeholder-viz {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.5s ease;
-}
-
-.cover-overlay {
+.instagram-frame {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  border: none;
 }
 
-.cover-item:hover .cover-overlay {
-  opacity: 1;
-}
-
-.cover-item:hover .placeholder-viz {
-  transform: scale(1.05);
-}
-
-.play-btn {
-  width: 60px;
-  height: 60px;
-  background: rgba(139, 92, 246, 0.8);
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left-color: var(--color-accent);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-  transform: scale(0.8);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: spin 1s linear infinite;
 }
 
-.cover-item:hover .play-btn {
-  transform: scale(1);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

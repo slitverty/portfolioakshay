@@ -28,6 +28,7 @@
 .social-links-lg {
   display: flex;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .social-icon {
@@ -41,6 +42,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   color: var(--text-primary);
+  text-decoration: none;
 }
 
 .social-icon svg {
@@ -53,6 +55,19 @@
   border-color: var(--color-primary);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+}
+
+.email-link {
+  width: auto;
+  padding: 0 1.5rem;
+  border-radius: 25px;
+  gap: 0.5rem;
+}
+
+.email-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 /* Form Styles */

@@ -232,7 +232,7 @@ const AdminControls = ({ data, onSave, onClose }) => {
                   <div className="form-section flex-col">
                     <div className="section-head">
                       <p>Manage secondary visual features/covers</p>
-                      <button className="add-btn" onClick={() => addArrayItem('covers', { title: "New Cover", img: "" })}>
+                      <button className="add-btn" onClick={() => addArrayItem('covers', { title: "New Cover", videoUrl: "" })}>
                         <Plus size={16} /> Add Cover
                       </button>
                     </div>
@@ -244,8 +244,8 @@ const AdminControls = ({ data, onSave, onClose }) => {
                         </div>
                         <label>Title</label>
                         <input className="ui-input" value={cover.title} onChange={e => handleArrayChange('covers', i, 'title', e.target.value)} />
-                        <label>Image URL</label>
-                        <input className="ui-input" value={cover.img} onChange={e => handleArrayChange('covers', i, 'img', e.target.value)} />
+                        <label>Instagram Reel URL</label>
+                        <input className="ui-input" value={cover.videoUrl || ''} onChange={e => handleArrayChange('covers', i, 'videoUrl', e.target.value)} />
                       </div>
                     ))}
                   </div>
